@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenhando</title>
+</head>
+<body>
+    <canvas id="quadro" style="background:beige"></canvas>
+</body>
+    <script>
+    window.onload = function () {
+        var largura = 500;
+        var altura = 300;
+
+        var quadro = document.getElementById("quadro");
+        quadro.setAttribute("width", largura);
+        quadro.setAttribute("height", altura);
+
+        var ctx = quadro.getContext("2d");
+
+        var desenhando = false;
+
+                    quadro.onmousedown = function (evt) {
+        ctx.moveTo(evt.clientX, evt.clientY);
+        desenhando = true;
+        }
+
+        quadro.onmouseup = function () {
+        desenhando = false;
+        }
+
+        quadro.onmousemove = function (evt) {
+        if (desenhando) {
+        ctx.lineTo(evt.clientX, evt.clientY);
+        ctx.stroke();
+        }
+        }
+    }
+
+</script>
+</html>
